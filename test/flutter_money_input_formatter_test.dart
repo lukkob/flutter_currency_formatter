@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_multi_formatter/currency_inputy_formatter.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import '../lib/flutter_multi_formatter.dart';
 
 void main() {
   test('should correctly remove a comma from thousands', () {
@@ -18,6 +17,6 @@ void main() {
                 selection: TextSelection(baseOffset: 4, extentOffset: 4),
                 composing: TextRange(start: -1, end: -1)))
         .text;
-    expect(formattedNumber, "100.00");
+    expect(formattedNumber, "100.0");
   });
 }

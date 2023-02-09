@@ -1,14 +1,6 @@
-import 'package:example/pages/bitcoin_validator_page.dart';
-import 'package:example/pages/credit_card_format_page.dart';
-import 'package:example/pages/masked_formatter_page.dart';
 import 'package:example/pages/money_format_page.dart';
-import 'package:example/pages/phone_format_page.dart';
-import 'package:example/pages/pos_format_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
-
-import 'pages/pinyin_formatter_page.dart';
 
 typedef PageBuilder = Widget Function();
 
@@ -44,20 +36,6 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  @override
-  void initState() {
-    super.initState();
-
-    PhoneInputFormatter.addAlternativePhoneMasks(
-      countryCode: 'NZ',
-      alternativeMasks: [
-        '+00 (0) 000 0000',
-        '+00 (00) 000 0000',
-        '+00 (000) 000 0000',
-      ],
-    );
-  }
-
   Widget _buildButton({
     required Color color,
     required IconData iconData,
@@ -71,10 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       child: Container(
         height: 50,
-        // ignore: deprecated_member_use
-        child: RaisedButton(
-          textColor: Colors.white,
-          color: color,
+        child: ElevatedButton(
           onPressed: () {
             openPage(
               pageBuilder(),
@@ -111,46 +86,10 @@ class _MyHomePageState extends State<MyHomePage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               _buildButton(
-                color: Colors.lightGreen,
-                iconData: Icons.phone,
-                label: 'Phone Formatter Demo',
-                pageBuilder: () => PhoneFormatPage(),
-              ),
-              _buildButton(
-                color: Colors.lightBlue,
-                iconData: Icons.credit_card,
-                label: 'Credit Card Formatter Demo',
-                pageBuilder: () => CreditCardFormatPage(),
-              ),
-              _buildButton(
-                color: Colors.orange,
-                iconData: Icons.masks_outlined,
-                label: 'Masked input formatter Demo',
-                pageBuilder: () => MaskedFormatterPage(),
-              ),
-              _buildButton(
                 color: Colors.pink[400]!,
                 iconData: Icons.attach_money,
                 label: 'Money formatter',
                 pageBuilder: () => MoneyFormatPage(),
-              ),
-              _buildButton(
-                color: Colors.green[600]!,
-                iconData: Icons.attach_money,
-                label: 'Bitcoin Validator',
-                pageBuilder: () => BitcoinValidatorPage(),
-              ),
-              _buildButton(
-                color: Colors.purple,
-                iconData: Icons.money_off,
-                label: 'Pos Formatter',
-                pageBuilder: () => PosFormatPage(),
-              ),
-              _buildButton(
-                color: Colors.red,
-                iconData: Icons.abc,
-                label: 'Chinese Pinyin Formatter',
-                pageBuilder: () => PinyinFormatterPage(),
               ),
             ],
           ),
