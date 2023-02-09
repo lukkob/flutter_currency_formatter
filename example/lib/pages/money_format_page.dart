@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_multi_formatter/currency_inputy_formatter.dart';
+import 'package:flutter_multi_formatter/currency_input_formatter.dart';
 
 class MoneyFormatPage extends StatefulWidget {
   @override

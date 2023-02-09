@@ -66,7 +66,7 @@ class CurrencyInputFormatter extends TextInputFormatter {
         );
       }
     } else {
-      if (_containsIllegalChars(newText)) {
+      if (containsIllegalChars(newText)) {
         return oldValue;
       }
     }
@@ -168,7 +168,8 @@ class CurrencyInputFormatter extends TextInputFormatter {
     return false;
   }
 
-  List<String> _findDifferentChars({
+  @visibleForTesting
+  List<String> findDifferentChars({
     required String longerString,
     required String shorterString,
   }) {
@@ -181,18 +182,19 @@ class CurrencyInputFormatter extends TextInputFormatter {
     return newChars;
   }
 
-  bool _containsMantissaSeparator(List<String> chars) => chars.contains(_mantissaSeparator);
+  @visibleForTesting
+  bool containsMantissaSeparator(List<String> chars) => chars.contains(_mantissaSeparator);
 
   bool _switchToRightInWholePart({
     required String newText,
     required String oldText,
   }) {
     if (newText.length > oldText.length) {
-      final newChars = _findDifferentChars(
+      final newChars = findDifferentChars(
         longerString: newText,
         shorterString: oldText,
       );
-      if (_containsMantissaSeparator(newChars)) return true;
+      if (containsMantissaSeparator(newChars)) return true;
     }
     return false;
   }
@@ -239,15 +241,16 @@ class CurrencyInputFormatter extends TextInputFormatter {
     required String shorterString,
     required String longerString,
   }) {
-    final differentChars = _findDifferentChars(
+    final differentChars = findDifferentChars(
       shorterString: shorterString,
       longerString: longerString,
     );
-    if (_containsMantissaSeparator(differentChars)) return true;
+    if (containsMantissaSeparator(differentChars)) return true;
     return false;
   }
 
-  bool _containsIllegalChars(String input) {
+  @visibleForTesting
+  bool containsIllegalChars(String input) {
     if (input.isEmpty) return false;
     var clearedInput = input;
 
