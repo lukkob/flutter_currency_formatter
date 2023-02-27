@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_multi_formatter/currency_inputy_formatter.dart';
+import 'package:flutter_multi_formatter/currency_input_formatter.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -28,13 +28,15 @@ void main() {
 
   test('should return true if input contains mantissa separator', () {
     final input = "1,000.0".split('');
-    final formattedNumber = currencyInputFormatter.containsMantissaSeparator(input);
+    final formattedNumber =
+        currencyInputFormatter.containsMantissaSeparator(input);
     expect(formattedNumber, true);
   });
 
   test('should return false if input doesnt contain mantissa separator', () {
     final input = "1000".split('');
-    final formattedNumber = currencyInputFormatter.containsMantissaSeparator(input);
+    final formattedNumber =
+        currencyInputFormatter.containsMantissaSeparator(input);
     expect(formattedNumber, false);
   });
 

@@ -27,7 +27,7 @@ class CurrencyInputFormatter extends TextInputFormatter {
     final oldText = oldValue.text;
     var newText = newValue.text;
 
-    if (newText.lastIndexOf(',') == newText.length - 1) {
+    if (newText.length > 0 && newText.lastIndexOf(',') == newText.length - 1) {
       newText = newText.replaceRange(newText.lastIndexOf(','), null, '.');
     }
     final lastCharacterIsDot = newText.indexOf('.') == newText.length - 1;
@@ -168,7 +168,6 @@ class CurrencyInputFormatter extends TextInputFormatter {
     return false;
   }
 
-  @visibleForTesting
   List<String> findDifferentChars({
     required String longerString,
     required String shorterString,
@@ -182,8 +181,8 @@ class CurrencyInputFormatter extends TextInputFormatter {
     return newChars;
   }
 
-  @visibleForTesting
-  bool containsMantissaSeparator(List<String> chars) => chars.contains(_mantissaSeparator);
+  bool containsMantissaSeparator(List<String> chars) =>
+      chars.contains(_mantissaSeparator);
 
   bool _switchToRightInWholePart({
     required String newText,
@@ -209,7 +208,8 @@ class CurrencyInputFormatter extends TextInputFormatter {
         var nextChar = '';
         if (caretPosition < newText.length - 1) {
           nextChar = newText[caretPosition];
-          if (!isDigit(nextChar, positiveOnly: true) || int.tryParse(nextChar) == 0) {
+          if (!isDigit(nextChar, positiveOnly: true) ||
+              int.tryParse(nextChar) == 0) {
             return true;
           }
         }
@@ -249,7 +249,6 @@ class CurrencyInputFormatter extends TextInputFormatter {
     return false;
   }
 
-  @visibleForTesting
   bool containsIllegalChars(String input) {
     if (input.isEmpty) return false;
     var clearedInput = input;
