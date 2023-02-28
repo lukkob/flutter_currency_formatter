@@ -27,7 +27,11 @@ class CurrencyInputFormatter extends TextInputFormatter {
     final oldText = oldValue.text;
     var newText = newValue.text;
 
-    if (newText.length > 0 && newText.lastIndexOf(',') == newText.length - 1) {
+    if (newText.length == 0) {
+      return newValue;
+    }
+
+    if (newText.lastIndexOf(',') == newText.length - 1) {
       newText = newText.replaceRange(newText.lastIndexOf(','), null, '.');
     }
     final lastCharacterIsDot = newText.indexOf('.') == newText.length - 1;
